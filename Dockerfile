@@ -1,33 +1,35 @@
-# Dockerfile
-
 # Use an official PHP runtime as a parent image
 FROM php:8.1-fpm
-
-# Set the working directory
-WORKDIR /var/www/html
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
     unzip \
-    libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql
+    wget
 
-# Install Composer
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+# Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install Symfony CLI (optional, but useful for development)
+# Install Symfony CLI
 RUN wget https://get.symfony.com/cli/installer -O - | bash && \
     mv /root/.symfony*/bin/symfony /usr/local/bin/symfony
 
-# Copy application files
-COPY . .
+# Set working directory
+WORKDIR /var/www
 
-# Install PHP dependencies
-RUN composer install
-
-# Set file permissions
-RUN chown -R www-data:www-data /var/www/html
+# Copy existing application directory contents
+COPY . /var/www
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
