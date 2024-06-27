@@ -1,2 +1,41 @@
 # symfony-assesment
-Assesment for PHP symfony, Dockerand static code analysis
+
+Assesment for PHP symfony, Docker and static code analysis  
+
+## Introduction  
+
+This project is a RESTful API built using Symfony 6.4. It provides endpoints for managing products, including creating, retrieving, updating, and deleting products. The project uses Doctrine ORM for database interactions and JWT for authentication. 
+
+## Requirements  
+
+- Docker
+
+- Docker Compose
+
+- Git 
+
+## Setup Instructions 
+
+### 1. Build and Run Docker Containers
+
+Build the Docker images
+```bash
+docker-compose build
+```
+Start the Docker containers
+```bash
+docker-compose up -d
+```
+### 2. Set Up the Symfony Application
+
+Enter the app container
+```bash
+docker exec -it symfony_app bash
+```
+Run database migrations
+```bash
+php bin/console doctrine:migrations:migrate
+```
+Clear the cache
+```bash
+php bin/console cache:clear --env=dev
