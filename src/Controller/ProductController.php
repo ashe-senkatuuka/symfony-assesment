@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+use Symfony\Component\Security\Core\Security;
+
 // Route prefix for all methods in this controller
 #[Route('/api/products')]
 class ProductController extends AbstractController
@@ -31,6 +33,16 @@ class ProductController extends AbstractController
         $this->entityManager = $entityManager;
         $this->productRepository = $productRepository;
         $this->validator = $validator;
+    }
+
+    #[Route('/debug-token', name: 'debug_token', methods: ['GET'])]
+    public function debugToken(Security $security): JsonResponse
+    {
+        $user = $security->getUser();
+        return $this->json([
+            'user' => $user ? $user->getUserIdentifier() : 'No user',
+            'roles' => $user ? $user->getRoles() : 'No roles',
+        ]);
     }
 
     // Route for getting all products
