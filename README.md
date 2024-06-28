@@ -86,9 +86,14 @@ Composer.json file contains a script "static-analysis" to run the static code an
 ```json
 "static-analysis": "./run_static_analysis.sh"
 ```
-Use the composer to execute the command
+Use composer to execute the command
 ```bash
 composer static-anaysis
 ```
 Output of the static analysis and any fixes made will be generated and saved to the codebase.
-The following files will be created: static_analysis_report.txt, phpstan_results.txt phpcs_results.txt phpcbf_results.txt code_fixes.diff
+The following files will be created: 
+
+ 1. static_analysis_report.txt
+ 2. phpstan_results.txt
+ 3. phpcs_results.txt
+ 4. code_fixes.diff
