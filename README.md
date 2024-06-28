@@ -1,41 +1,94 @@
+
 # symfony-assesment
 
-Assesment for PHP symfony, Docker and static code analysis  
+  
 
-## Introduction  
+Assesment for PHP symfony, Docker and static code analysis
 
-This project is a RESTful API built using Symfony 6.4. It provides endpoints for managing products, including creating, retrieving, updating, and deleting products. The project uses Doctrine ORM for database interactions and JWT for authentication. 
+  
 
-## Requirements  
+## Introduction
+
+  
+
+This project is a RESTful API built using Symfony 6.4. It provides endpoints for managing products, including creating, retrieving, updating, and deleting products. The project uses Doctrine ORM for database interactions and JWT for authentication.
+
+  
+
+## Requirements
+
+  
 
 - Docker
 
+  
+
 - Docker Compose
 
-- Git 
+  
 
-## Setup Instructions 
+- Git
+
+  
+
+## Setup Instructions
+
+  
 
 ### 1. Build and Run Docker Containers
 
+  
+
 Build the Docker images
+
 ```bash
-docker-compose build
+
+docker-compose  build
+
 ```
+
 Start the Docker containers
+
 ```bash
-docker-compose up -d
+
+docker-compose  up  -d
+
 ```
+
 ### 2. Set Up the Symfony Application
 
+  
+
 Enter the app container
+
 ```bash
-docker exec -it symfony_app bash
+
+docker  exec  -it  symfony_app  bash
+
 ```
+
 Run database migrations
+
 ```bash
-php bin/console doctrine:migrations:migrate
+
+php  bin/console  doctrine:migrations:migrate
+
 ```
+
 Clear the cache
+
 ```bash
-php bin/console cache:clear --env=dev
+
+php  bin/console  cache:clear  --env=dev
+```
+### 2. Static Code Analysis
+Composer.json file contains a script "static-analysis" to run the static code analysis
+```json
+"static-analysis": "./run_static_analysis.sh"
+```
+Use the composer to execute the command
+```bash
+composer static-anaysis
+```
+Output of the static analysis and any fixes made will be generated and saved to the codebase.
+The following files will be created: static_analysis_report.txt, phpstan_results.txt phpcs_results.txt phpcbf_results.txt code_fixes.diff
