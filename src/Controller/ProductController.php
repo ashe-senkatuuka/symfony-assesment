@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Serializer\SerializerInterface;
 
 // Route prefix for all methods in this controller
 #[Route('/api/products')]
@@ -27,7 +28,8 @@ class ProductController extends AbstractController
     public function __construct(
         EntityManagerInterface $entityManager,
         ProductRepository $productRepository,
-        ValidatorInterface $validator
+        ValidatorInterface $validator,
+        private SerializerInterface $serializer
     ) {
         $this->entityManager = $entityManager;
         $this->productRepository = $productRepository;
@@ -50,8 +52,9 @@ class ProductController extends AbstractController
     {
         // Fetch all products from the repository
         $products = $this->productRepository->findAll();
+        $jsonContent = $this->serializer->serialize($products, 'json', ['groups' => 'product']);
         // Return products as JSON response
-        return $this->json($products);
+        return new JsonResponse($jsonContent, 200, [], true);
     }
 
     // Route for creating a new product
