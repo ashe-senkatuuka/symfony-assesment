@@ -66,6 +66,13 @@ Enter the app container
 docker  exec  -it  symfony_app  bash
 
 ```
+Create .env from .env.example to and provide password to the database. Replace !ChangeMe! with the password you create.
+
+```bash
+DATABASE_URL="postgresql://app:!ChangeMe!@127.0.0.1:5432/app?serverVersion=16&charset=utf8"
+
+
+```
 
 Run database migrations
 
@@ -81,12 +88,12 @@ Clear the cache
 
 php  bin/console  cache:clear  --env=dev
 ```
-### 2. Static Code Analysis
+### 3. Static Code Analysis
 Composer.json file contains a script "static-analysis" to run the static code analysis
 ```json
 "static-analysis": "./run_static_analysis.sh"
 ```
-Use composer to execute the command
+Use the composer to execute the command
 ```bash
 composer static-anaysis
 ```
@@ -97,3 +104,7 @@ The following files will be created:
  2. phpstan_results.txt
  3. phpcs_results.txt
  4. code_fixes.diff
+ 
+### .4  API documentation 
+The api documentation can be accessed at `http://127.0.0.1/api/doc`
+
