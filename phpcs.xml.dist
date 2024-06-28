@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+
+    <!-- set the base path for reported file names -->
+    <arg name="basepath" value="."/>
+
+    <!-- enable caching of PHPCS results, -->
+    <arg name="cache" value=".phpcs-cache"/>
+
+    <!-- enable caching of PHPCS results, -->
+    <arg name="colors"/>
+
+    <!-- only check PHP files -->
+    <arg name="extensions" value="php"/>
+
+    <!-- Exclude some directories -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/var/*</exclude-pattern>
+
+    <!-- Use PSR-12 as the base -->
+    <rule ref="PSR12"/>
+
+    <!-- Specify the paths to scan -->
+    <file>src/</file>
+    <file>tests/</file>
+
+    <!-- Show progress -->
+    <arg value="p"/>
+
+    <!-- Show sniff codes in all reports -->
+    <arg value="s"/>
+
+    <!-- Use colors in output -->
+    <arg name="colors"/>
+
+    <!-- Specify the PHP version (8.1)-->
+    <config name="php_version" value="80100"/>
+
+    <!-- Ignore warnings, show only errors -->
+    <arg value="n"/>
+
+</ruleset>

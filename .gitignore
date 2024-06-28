@@ -14,3 +14,17 @@
 ###< lexik/jwt-authentication-bundle ###
 
 /.env
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
+
+###> squizlabs/php_codesniffer ###
+/.phpcs-cache
+/phpcs.xml
+###< squizlabs/php_codesniffer ###
+
+
+static_analysis_report.txt
+phpcs_resuts.txt
+phpstan_results.txt
