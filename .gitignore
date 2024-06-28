@@ -25,6 +25,3 @@ phpstan.neon
 ###< squizlabs/php_codesniffer ###
 
 
-static_analysis_report.txt
-phpcs_resuts.txt
-phpstan_results.txt

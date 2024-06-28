@@ -1,0 +1,26 @@
+ ------ -------------------------------------------------------------------------------------- 
+  Line   src/Controller/ProductController.php                                                  
+ ------ -------------------------------------------------------------------------------------- 
+  :22    Property App\Controller\ProductController::$entityManager has no type specified.      
+  :23    Property App\Controller\ProductController::$productRepository has no type specified.  
+  :24    Property App\Controller\ProductController::$validator has no type specified.          
+ ------ -------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------------- 
+  Line   src/Entity/User.php                                                                               
+ ------ -------------------------------------------------------------------------------------------------- 
+  :24    Property App\Entity\User::$roles type has no value type specified in iterable type array.         
+         💡 See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type         
+  :57    Method App\Entity\User::setRoles() has parameter $roles with no value type specified in iterable  
+         type array.                                                                                       
+         💡 See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type         
+ ------ -------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------- 
+  Line   src/EventListener/ExceptionListener.php                                                        
+ ------ ----------------------------------------------------------------------------------------------- 
+  :15    Method App\EventListener\ExceptionListener::onKernelException() has no return type specified.  
+ ------ ----------------------------------------------------------------------------------------------- 
+
+ [ERROR] Found 6 errors                                                                                    
+

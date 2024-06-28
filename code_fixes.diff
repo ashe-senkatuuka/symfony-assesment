@@ -1,0 +1,124 @@
+diff --git a/.gitignore b/.gitignore
+index b9b61d9..ff6f478 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -25,6 +25,3 @@ phpstan.neon
+ ###< squizlabs/php_codesniffer ###
+ 
+ 
+-static_analysis_report.txt
+-phpcs_resuts.txt
+-phpstan_results.txt
+\ No newline at end of file
+diff --git a/run_static_analysis.sh b/run_static_analysis.sh
+index b576f72..e444e33 100755
+--- a/run_static_analysis.sh
++++ b/run_static_analysis.sh
+@@ -1,7 +1,7 @@
+ #!/bin/bash
+ 
+ # Run static analysis
+-./vendor/bin/phpstan analyse -c phpstan.neon > phpstan_results.txt
++./vendor/bin/phpstan analyse > phpstan_results.txt
+ ./vendor/bin/phpcs > phpcs_results.txt
+ 
+ # Apply automatic fixes
+@@ -39,6 +39,6 @@ echo "Code Changes:" >> static_analysis_report.txt
+ cat code_fixes.diff >> static_analysis_report.txt
+ 
+ # Clean up temporary files
+-rm phpstan_results.txt phpcs_results.txt phpcbf_results.txt code_fixes.diff
++# rm phpstan_results.txt phpcs_results.txt phpcbf_results.txt code_fixes.diff
+ 
+ echo "Static analysis report generated: static_analysis_report.txt"
+\ No newline at end of file
+diff --git a/src/Command/CreateUserCommand.php b/src/Command/CreateUserCommand.php
+index 6e2df20..75ec368 100644
+--- a/src/Command/CreateUserCommand.php
++++ b/src/Command/CreateUserCommand.php
+@@ -1,4 +1,5 @@
+ <?php
++
+ // src/Command/CreateUserCommand.php
+ 
+ namespace App\Command;
+@@ -47,4 +48,4 @@ class CreateUserCommand extends Command
+ 
+         return Command::SUCCESS;
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/src/Controller/ProductController.php b/src/Controller/ProductController.php
+index 8b8ba1a..a3196f7 100644
+--- a/src/Controller/ProductController.php
++++ b/src/Controller/ProductController.php
+@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\Routing\Annotation\Route;
+ use Symfony\Component\Validator\Validator\ValidatorInterface;
+-
+ use Symfony\Component\Security\Core\Security;
+ 
+ // Route prefix for all methods in this controller
+diff --git a/src/Entity/User.php b/src/Entity/User.php
+index 95a3126..d2f0f08 100644
+--- a/src/Entity/User.php
++++ b/src/Entity/User.php
+@@ -1,4 +1,5 @@
+ <?php
++
+ // src/Entity/User.php
+ 
+ namespace App\Entity;
+@@ -74,4 +75,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
+     {
+         // If you store any temporary, sensitive data on the user, clear it here
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/src/EventListener/ExceptionListener.php b/src/EventListener/ExceptionListener.php
+index 06def49..be09d0a 100644
+--- a/src/EventListener/ExceptionListener.php
++++ b/src/EventListener/ExceptionListener.php
+@@ -38,4 +38,4 @@ class ExceptionListener
+ 
+         $event->setResponse($response);
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/src/Exception/ProductNotFoundException.php b/src/Exception/ProductNotFoundException.php
+index a213743..2bd6e7e 100644
+--- a/src/Exception/ProductNotFoundException.php
++++ b/src/Exception/ProductNotFoundException.php
+@@ -10,4 +10,4 @@ class ProductNotFoundException extends HttpException
+     {
+         parent::__construct(404, 'Product not found');
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/src/Repository/ProductRepository.php b/src/Repository/ProductRepository.php
+index ec951d8..80524df 100644
+--- a/src/Repository/ProductRepository.php
++++ b/src/Repository/ProductRepository.php
+@@ -23,6 +23,4 @@ class ProductRepository extends ServiceEntityRepository
+     {
+         parent::__construct($registry, Product::class);
+     }
+-
+-    
+ }
+diff --git a/src/Repository/UserRepository.php b/src/Repository/UserRepository.php
+index ece6679..8f7b0e1 100644
+--- a/src/Repository/UserRepository.php
++++ b/src/Repository/UserRepository.php
+@@ -55,4 +55,4 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
+ 
+         $this->save($user, true);
+     }
+-}
+\ No newline at end of file
++}

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Run static analysis
-./vendor/bin/phpstan analyse -c phpstan.neon > phpstan_results.txt
+./vendor/bin/phpstan analyse > phpstan_results.txt
 ./vendor/bin/phpcs > phpcs_results.txt
 
 # Apply automatic fixes
@@ -39,6 +39,6 @@ echo "Code Changes:" >> static_analysis_report.txt
 cat code_fixes.diff >> static_analysis_report.txt
 
 # Clean up temporary files
-rm phpstan_results.txt phpcs_results.txt phpcbf_results.txt code_fixes.diff
+# rm phpstan_results.txt phpcs_results.txt phpcbf_results.txt code_fixes.diff
 
 echo "Static analysis report generated: static_analysis_report.txt"

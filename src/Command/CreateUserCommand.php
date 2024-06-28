@@ -1,4 +1,5 @@
 <?php
+
 // src/Command/CreateUserCommand.php
 
 namespace App\Command;
